@@ -3,6 +3,8 @@
 Answer each question in 3 to 5 sentences. Be specific and honest about what actually happened while you worked. This is about your process, not trying to sound perfect.
 
 ## 1. What was broken when you started?
+The hint was incorect. It would show the opposite of what the user should have noted to help themselves guess correctly. For example if you need to choose a lower number it would say "GO HIGHER" instead of Lower which is misleading. Also the "new game" button didnt work on my first run through.
+
 
 - What did the game look like the first time you ran it?
 - List at least two concrete bugs you noticed at the start  
