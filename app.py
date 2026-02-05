@@ -61,6 +61,8 @@ if st.session_state.secret is None or st.session_state.difficulty != difficulty:
     st.session_state.difficulty = difficulty
     st.session_state.range = (low, high)
     reset_game_state(st.session_state, low, high)
+    #FIX Cleared the input widget value for this difficulty so the box is empty on difficulty change
+    st.session_state[f"guess_input_{difficulty}"] = ""
 
 
 st.subheader("Make a guess")
@@ -77,6 +79,12 @@ with st.expander("Developer Debug Info"):
     st.write("Score:", st.session_state.score)
     st.write("Difficulty:", difficulty)
     st.write("History:", st.session_state.history)
+#FIX: Refactored logic into app.py using Copilot Agent mode
+    # Diagnostic: show the current stored value for the guess input widget
+    st.write(
+        "Stored widget value (guess_input key):",
+        st.session_state.get(f"guess_input_{difficulty}"),
+    )
 
 
 raw_guess = st.text_input(
@@ -97,6 +105,8 @@ if new_game:
     # FIX: Reset all relevant session_state fields consistently (secret/attempts/score/status/history),
     # and re-roll secret inside the selected difficulty range.
     reset_game_state(st.session_state, low, high)
+    # Also clear the visible text input (Streamlit preserves widget values by key across reruns)
+    st.session_state[f"guess_input_{difficulty}"] = ""
     st.success("New game started.")
     st.rerun()
 
